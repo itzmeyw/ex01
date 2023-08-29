@@ -61,3 +61,19 @@ github저장소의 메인저장소 -> !!! origin !!!
 	3. git pull origin(저장소명) 브랜치명
 
 <git clone> -> git init / git remote add ~ / git pull ~~ 를 한번에 해주는 명령어!!	
+
+<github 저장소에서 가져올 때 브랜치가 일치하지 않을 때>
+방법 1.
+	git checkout -b topic
+	git fetch origin(브랜치명없음)
+	git merge origin/topic
+
+방법 2.
+	git checkout -b topic	-> topic브랜치 생성 및 이동
+	git pull origin topic	-> topic브랜치 다운로드 및 머지
+		(pull = fetch + merge)
+방법 3. 
+	git fetch origin	-> origin의 모든 브랜치 최신버전으로 다운로드
+	git checkout -b topic origin/topic	-> topic이라는 브랜치 생성 및 머지
+
+* git merge --squash topic -> 해당 브랜치를 rebase처럼 squash시키고 머지시키고, commit이 안된 상태로 넘어옴
