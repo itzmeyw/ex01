@@ -1,0 +1,63 @@
+git init
+
+git status
+
+git log
+
+------------------------------------------------------
+
+git add .
+
+git commit -m "~~"
+
+git reset 	--soft : 헤더만 전으로 바뀐다 즉, add까지 되어있는 상태 - > 커밋로그 변경시 사용 (커밋 메시지를 잘못 적었거나 수정하고 싶을 때)
+		--mixed : 모든 기록(헤더 + 인덱스)만 남기고 파일변경사항은 남겨둠 (즉, 아직 add를 하지 않은 상태 - 변경만 감지한 상태) -> 작업영역의 변경이 필요할 때
+		--hard : 모든 기록과 파일까지 다 날림 -> 완전 전으로 돌아갈 때 (ex. test2상태에서 test1으로 되돌리고 싶을 때)
+
+git reflog : 지금까지 내가 실행한 모든 로그 기록들이 쫙 나옴 
+
+git commit --amend -m "최종로그 수정" : 최종로그는 돌아갈 수 있는 기록(헤더)이 없으므로, 이 명령어 이용, 최종 로그를 수정 할 수 있음
+
+<merge>
+ fast-forward merge : 충돌 X일 때
+ 3-way merge : 충돌 O일 때
+
+<touch> : 파일을 만드는 명령어
+ touch 파일명.확장자 (ex. touch 회원가입.txt)
+
+git branch : 현재 내가 있는 브랜치를 보여준다. -> 현재 HEAD가 어디에 위치해 있는지
+
+git branch 만들브랜치명 : 새로운 브랜치를 만든다.
+
+git checkout 브랜치명 : 내가 원하는 브랜치로 이동한다.
+
+git merge merge시킬 브랜치명 : 현재 위치의 브랜치에서 원하는 브랜치로 머지시킨다.
+
+git checkout -b 브랜치명 : 브랜치를 새로 만들면서 그 브랜치로 이동한다.
+
+머지했을 때 충돌이 되면?? 충돌이 떴다고 로그가 뜬다! 
+-> 충돌된 파일을 가면 충돌된 부분이 표시되어 있다. 
+-> 이것을 보고 어떤 부분을 사용할지 수정해준다. 
+-> 다시 add 후 commit!
+
+<rebase> : 로그를 깔끔하게 정리! -> Pick과 Squash의 개념 -> 맨 아래에서 위로만가능 왜? 위에서 아래로는 그 점이 사라지기 때문에 ==> 무조건 과거 쪽으로 찌그려트려야 된다!!
+주석 로그에 나오는 s, r, d 등의 개념을 알아두자
+ex) git rebase -i HEAD~ 
+
+github저장소의 메인저장소 -> !!! origin !!!
+ 
+<github 저장소에 추가하기> ★ 중요개념 : origin / remote add / push ★
+	1. git init
+	2. git add / commit
+	3. git remote add origin(저장소이름?) https://주소 -> 해당 주소의 github저장소로 연결하겠다!
+	4. 연결되었는지 확인 -> git remote -v 또는 git ls-remote
+	5. 작업한 사항이 있으면 작업
+	6. 작업 완료 후 git push origin 브랜치이름 -> ~~브랜치에 업로드하고 merge하겠다!!! push!!
+	If) github저장소를 잘못 연결 했다면? -> git remote rm origin(저장소명?) -> 하면 연결된 저장소가 해제된다.
+
+<github 저장소에서 가져오기>
+	1. git init
+	2. git remote add origin(저장소명) https://주소
+	3. git pull origin(저장소명) 브랜치명
+
+<git clone> -> git init / git remote add ~ / git pull ~~ 를 한번에 해주는 명령어!!	
